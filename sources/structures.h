@@ -58,3 +58,12 @@ typedef struct PNJ
 {
     int* storage;
 } PNJ;
+
+typedef struct Monster
+{
+    int monster;
+    int level;
+    float CurrentlifePoint;
+    int maxLifePoint;
+    int damage;
+} Monster;
