@@ -31,16 +31,16 @@ typedef struct Armors
     int damageResist;
 } Armors;
 
-typedef struct Craft
+typedef struct CraftResources
 {
     char*name;
     int storage;
-} Craft;
+} CraftResources;
 
 typedef struct Inventory
 {
     int* storage;
-    Craft* ressources;
+    CraftResources* ressources;
 } Inventory;
 
 typedef struct Player
