@@ -41,7 +41,7 @@ typedef struct Inventory
 {
     int* storage;
     Craft* ressources;
-} Craft;
+} Inventory;
 
 typedef struct Player
 {
