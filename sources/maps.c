@@ -120,7 +120,8 @@ void monsterSpawn(int** map,int longueurMap,char zone){
 }
 
 void playerSpawn(int** map,int longueurMap){
-    addCase(map, longueurMap, 1);
+    //addCase(map, longueurMap, 1);
+    map[2][2] =1;
 }
 
 /*int longMap(int** map){
@@ -134,35 +135,100 @@ void playerSpawn(int** map,int longueurMap){
   //  printf("%d        ,longMAP _______________",count);
     return count;
 }*/
-void movePlayer(int** map,int longueur){
+void playGame(int** map,int longueur){
+    do {
+        printf("deplacement joueur");
+        movePlayer(map,10);
+        
+    } while (1);
 }
-/*void actionPlayer(){
-    char action;
-    printf("move: ");
-    scanf("%c",&action);
+void movePlayer(int** map,int longueur){
+    char keyPress = 0;
+    scanf("%c",&keyPress);
+         switch (keyPress)
+        {
+            case 'z':
+                printf("keypress = %c      ",keyPress);
+                actionPlayer(map,longueur,keyPress);
+                scanf("%c",&keyPress);
+                printMap(map,longueur);
+                break;
+            case 's':
+                actionPlayer(map,longueur,keyPress);
+                scanf("%c",&keyPress);
+                printMap(map,longueur);
+                break;
+            case 'q':
+                actionPlayer(map,longueur,keyPress);
+                scanf("%c",&keyPress);
+                printMap(map,longueur);
+                break;
+            case 'd':
+                actionPlayer(map,longueur,keyPress);
+                scanf("%c",&keyPress);
+                printMap(map,longueur);
+                break;
+        }
+}
+
+int** actionPlayer(int** map,int longueur,char move){
     
-    switch (action) {
-        case 'z':
+    for (int i = 0; i <= longueur-1; i+=1)
+    {
+        for (int j = 0; j <= longueur-1; j+=1)
+        {
+            if (map[i][j] == 1)
+            {
+                switch (move)
+                {
+                    case 'z':
+                        printf("cas Z up --------");
+                        if(i-1 >=0 && map[i-1][j] != -1){
+                            map[i][j]= 0;
+                            map[i-1][j]= 1;
+                        }
+                       // printMap(map, longueur);
+                        return map;
+                        break;
+                    case 's':
+                       // printf("%d longueurr-----",longueur);
+                       // printf("%d : i+1-----",i+1);
+                        if(i+1<=longueur-1 && map[i+1][j] != -1){
+                            map[i][j]= 0;
+                            map[i+1][j]= 1;
+                        }
+                        return map;
+                        break;
+                    case 'q':
+                        if(j-1 >=0 && map[i][j-1]!= -1){
+                            map[i][j]= 0;
+                            map[i][j-1]= 1;
+                        }
+                        return map;
+                        break;
+                    case 'd':
+                        if(j+1<=longueur-1 && map[i][j+1]!= -1){
+                            map[i][j]= 0;
+                            map[i][j+1]= 1;
+                        }
+                        return map;
+                        break;
+                }
+
+            }
             
-            break;
-        case 'q':
-            
-            break;
-        case 'd':
-            
-            break;
-        case 's':
-            
-            break;
-        default:
-            break;
+        }
+        
     }
-}*/
+    return map;
+    
+}
+
 int** createMap(int size,char zone){
-    /* ---------------- LONGUEUR ALEATOIRE PB ------------------------*/
+    // ---------------- LONGUEUR ALEATOIRE PB ------------------------//
     //  int longueur = randomNumber(8, 15);
     
-    /*------------------- LONGUEUR VALEUR PAR DEFAUT ---------------------*/
+    //------------------- LONGUEUR VALEUR PAR DEFAUT ---------------------//
    // int longueur = 14;
     printf("----------------ZONE %d ---------------",zone);
     int** maps = malloc(size*sizeof(int*));
