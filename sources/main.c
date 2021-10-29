@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "data.c"
+#include "maps.c"
 
 int main(int argc, char *argv[])
 {
