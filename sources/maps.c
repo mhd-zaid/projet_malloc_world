@@ -19,22 +19,27 @@ int randomNumber(int min,int max){
 }
 
 
-void ressourceMap(int** map,int longueurMap){
-    int x = 0;
-    int y = 0;
-    int elementZone =3;
+void ressourceMap(int** map,int longueurMap,char zone){
+    int elementZone;
+    switch (zone) {
+        case 1:
+             elementZone = 3;
+            break;
+        case 2:
+            elementZone = 6;
+            break;
+        case 3:
+            elementZone = 9;
+            break;
+        default:elementZone = 3;
+            break;
+    }
+   // int elementZone =3;
     int nbElement = randomNumber(3, 15);
     printf("%d ressources \n",nbElement);
     for (int count=0; count<3; count+=1) {
         for(int i= 0;i<nbElement;i+=1){
-            x=randomNumber(0,longueurMap-1);
-            y=randomNumber(0,longueurMap-1);
-            if (map[x][y]== 0) {
-                map[x][y] = elementZone;
-            }
-            else{
-               i-=1;
-                }
+            addCase(map, longueurMap, elementZone);
         }
         elementZone+=1;
     }
@@ -45,40 +50,39 @@ void wall(int** map,int longueurMap){
     int nbElementZone = randomNumber(2, 5);
     printf("%d murs \n",nbElementZone);
     for (int i=0; i<nbElementZone; i+=1) {
-        int x = randomNumber(0, longueurMap-1);
-        int y = randomNumber(0, longueurMap-1);
-        map[x][y] = wall;
+        addCase(map, longueurMap, wall);
     }
 }
 void teleporterZone(int** map,int longueurMap,char zoneNum){
-    int x = randomNumber(0, longueurMap-1);
-    int y = randomNumber(0, longueurMap-1);
     int portal;
     switch (zoneNum) {
         case 1:
             portal = -2;
-            x = randomNumber(0, longueurMap-1);
-            y = randomNumber(0, longueurMap-1);
-            map[x][y] = portal;
+            addCase(map, longueurMap, portal);
             break;
         case 2:
             portal = -2;
-            x = randomNumber(0, longueurMap-1);
-            y = randomNumber(0, longueurMap-1);
-            map[x][y] = portal;
+            addCase(map, longueurMap, portal);
             portal = -3;
-            x = randomNumber(0, longueurMap-1);
-            y = randomNumber(0, longueurMap-1);
-            map[x][y] = portal;
+            addCase(map, longueurMap, portal);
             break;
         case 3:
             portal = -3;
-            x = randomNumber(0, longueurMap-1);
-            y = randomNumber(0, longueurMap-1);
-            map[x][y] = portal;
+            addCase(map, longueurMap, portal);
             break;
     }
     
+}
+void addCase(int** map,int longueurMap,int value){
+    int x = randomNumber(0, longueurMap-1);
+    int y = randomNumber(0, longueurMap-1);
+    if(map[x][y] != 0){
+        while (map[x][y] != 0) {
+            x = randomNumber(0, longueurMap-1);
+            y = randomNumber(0, longueurMap-1);
+        }
+    }
+    map[x][y] = value;
 }
 void monsterSpawn(int** map,int longueurMap,char zone){
     int x = 0;
@@ -86,26 +90,22 @@ void monsterSpawn(int** map,int longueurMap,char zone){
     int nbMonsters = randomNumber(10, 15);
     printf("%d monstres \n",nbMonsters);
         for(int i= 0;i<nbMonsters;i+=1){
-            x=randomNumber(0,longueurMap-1);
-            y=randomNumber(0,longueurMap-1);
+            /*x=randomNumber(0,longueurMap-1);
+            y=randomNumber(0,longueurMap-1);*/
             //printf("x: %d, y: %d ; ",x,y);
             int monster = randomNumber(12, 97);
-            if(zone == 1){
-                monster = randomNumber(12, 35);
+            switch (zone) {
+                case 1:
+                    monster = randomNumber(12, 35);
+                    break;
+                case 2:
+                    monster = randomNumber(35, 69);
+                    break;
+                case 3:
+                    monster = randomNumber(69, 97);
+                    break;
             }
-            else if(zone == 2){
-                monster = randomNumber(35, 69);
-            }
-            else{
-                monster = randomNumber(69, 97);
-            }
-            
-            if (map[x][y]== 0) {
-                map[x][y] = monster;
-            }
-            else{
-                i-=1;
-            }
+            addCase(map, longueurMap, monster);
         }
     if (zone == 3) {
         int monster =98;
@@ -120,9 +120,7 @@ void monsterSpawn(int** map,int longueurMap,char zone){
 }
 
 void playerSpawn(int** map,int longueurMap){
-    int x = randomNumber(0, longueurMap-1);
-    int y = randomNumber(0, longueurMap-1);
-    map[x][y] = 1;
+    addCase(map, longueurMap, 1);
 }
 
 /*int longMap(int** map){
@@ -166,7 +164,7 @@ int** createMap(int size,char zone){
     
     /*------------------- LONGUEUR VALEUR PAR DEFAUT ---------------------*/
    // int longueur = 14;
-    
+    printf("----------------ZONE %d ---------------",zone);
     int** maps = malloc(size*sizeof(int*));
     for(int i=0;i<size;i+=1){
         maps[i] = malloc(size*sizeof(int));
@@ -175,11 +173,11 @@ int** createMap(int size,char zone){
         }
     }
     
-    monsterSpawn(maps, size,zone);
-    ressourceMap(maps, size);
+    ressourceMap(maps, size,zone);
     wall(maps, size);
     playerSpawn(maps, size);
     teleporterZone(maps, size,zone);
+    monsterSpawn(maps, size,zone);
     return maps;
 }
 
