@@ -56,7 +56,6 @@ CraftResources Hemp;
 void alimentationDonnees()
 {
     /**************************************************/
-
     WoodSword.name = "Epee en Bois";
     WoodSword.damage = 1;
     WoodSword.durability = 10;

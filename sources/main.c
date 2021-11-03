@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include "data.c"
 #include "maps.c"
-#include "functions.c"
+#include "inventory.c"
 
 int main(int argc, char *argv[])
 {
 // Test de l'alimentation de données
 
-   /* alimentationDonnees();
+   /*alimentationDonnees();
     printf("%s\n", DiamondSpear.name);
     printf("%d\n", DiamondSpear.damage);
     printf("%d\n", DiamondSpear.durability);*/
@@ -27,9 +27,19 @@ int main(int argc, char *argv[])
 //Test de la fonction qui ajoute une arme a un inventaire
 
    Player BruceBanner;
-   Inventory InventoryStart;
+   Inventory *InventoryStart = malloc(sizeof(Inventory));
 
-    addArmsToInventory(&InventoryStart,&WoodSword);
-    printf("%d",InventoryStart.arms[0].durability);
+    alimentationDonnees();
+    addArmsToInventory(InventoryStart,WoodSword);
+    addArmsToInventory(InventoryStart,StoneSword);
+    addArmsToInventory(InventoryStart,IronSword);
+    addArmsToInventory(InventoryStart,DiamondSword);
+
+    for(int i = 0 ; i <= 20 ; i++){
+       printf("%s\n",InventoryStart->arms[i].name);
+       printf("%d\n",InventoryStart->arms[i].damage);
+       printf("%d\n",InventoryStart->arms[i].durability);
+    }
+ 
     
 }
