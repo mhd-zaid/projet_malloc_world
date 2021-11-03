@@ -6,6 +6,9 @@
 ** Description : contains all the structures necessary for the game.
 */
 
+#ifndef structures_h
+#define structures_h
+
 typedef struct Arms
 {
     char* name;
@@ -39,8 +42,13 @@ typedef struct CraftResources
 
 typedef struct Inventory
 {
-    int* storage;
-    CraftResources* ressources;
+    int storage;
+    CraftResources ressources[20];
+    Arms arms[20];
+    Tools tools[20];
+    Healings healings[20];
+    Armors armors[20];
+
 } Inventory;
 
 typedef struct Player
@@ -67,3 +75,6 @@ typedef struct Monster
     int maxLifePoint;
     int damage;
 } Monster;
+
+
+#endif /* structures_h */
