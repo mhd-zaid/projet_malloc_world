@@ -137,8 +137,8 @@ void playerSpawn(int** map,int longueurMap){
 }*/
 void playGame(int** map,int longueur){
     do {
-        printf("deplacement joueur");
-        movePlayer(map,10);
+        printf("deplacement joueur \n");
+        movePlayer(map,longueur);
         
     } while (1);
 }
@@ -254,9 +254,10 @@ void printMap(int** maps,int longueur){
   //  *pLong;
     for (int i=0; i<longueur;i+=1) {
         for (int j=0; j<longueur; j+=1) {
-            printf("%d    ",maps[i][j]);
+            printf("%3d",maps[i][j]);
         }
         printf("\n");
         printf("\n");
     }
+    printf("%d test ------   ",maps[4][5]);
 }
