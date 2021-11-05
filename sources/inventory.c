@@ -11,60 +11,60 @@
 
 /**************************************************/
 
-void addArmsToInventory(Inventory *inventory, Arms arms){
+void addArmsToInventory(Player *player, Arms arms){
     
     for(int i = 0 ; i<=20; i++){
-        if(inventory->arms[i].durability == 0 ){
-            inventory->arms[i] = arms;
-            inventory->storage += 1;
+        if(player->inventory.arms[i].durability == 0 ){
+            player->inventory.arms[i] = arms;
+            player->inventory.storage += 1;
             break;
         }
     }
 }
 /**************************************************/
 
-void addCraftRessourcesToInventory(Inventory *inventory, CraftResources craftResources){
+void addCraftRessourcesToInventory(Player *player, CraftResources craftResources){
     
     for(int i = 0 ; i<=20; i++){
-        if(inventory->ressources[i].name == NULL ){
-            inventory->ressources[i] = craftResources;
-            inventory->storage += 1;
+        if(player->inventory.ressources[i].name == NULL ){
+            player->inventory.ressources[i] = craftResources;
+            player->inventory.storage += 1;
             break;
         }
     }
 }
 /**************************************************/
 
-void addToolsToInventory(Inventory *inventory, Tools tools){
+void addToolsToInventory(Player *player, Tools tools){
     
     for(int i = 0 ; i<=20; i++){
-        if(inventory->tools[i].durability == 0 ){
-            inventory->tools[i] = tools;
-            inventory->storage += 1;
+        if(player->inventory.tools[i].durability == 0 ){
+            player->inventory.tools[i] = tools;
+            player->inventory.storage += 1;
             break;
         }
     }
 }
 /**************************************************/
 
-void addHealingsToInventory(Inventory *inventory, Healings healings){
+void addHealingsToInventory(Player *player, Healings healings){
     
     for(int i = 0 ; i<=20; i++){
-        if(inventory->healings[i].restoreLife == 0 ){
-            inventory->healings[i] = healings;
-            inventory->storage += 1;
+        if(player->inventory.healings[i].restoreLife == 0 ){
+            player->inventory.healings[i] = healings;
+            player->inventory.storage += 1;
             break;
         }
     }
 }
 /**************************************************/
 
-void addArmorsToInventory(Inventory *inventory, Armors armors){
+void addArmorsToInventory(Player *player, Armors armors){
     
     for(int i = 0 ; i<=20; i++){
-        if(inventory->armors[i].damageResist == 0 ){
-            inventory->armors[i] = armors;
-            inventory->storage += 1;
+        if(player->inventory.armors[i].damageResist == 0 ){
+            player->inventory.armors[i] = armors;
+            player->inventory.storage += 1;
             break;
         }
     }

@@ -14,12 +14,14 @@ typedef struct Arms
     char* name;
     int damage;
     int durability;
+    int durabilityMax;
 } Arms;
 
 typedef struct Tools
 {
     char* name;
     int durability;
+    int durabilityMax;
 } Tools;
 
 typedef struct Healings

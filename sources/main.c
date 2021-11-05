@@ -2,6 +2,7 @@
 #include "data.c"
 #include "maps.c"
 #include "inventory.c"
+#include "pnj.c"
 
 int main(int argc, char *argv[])
 {
@@ -13,33 +14,51 @@ int main(int argc, char *argv[])
     printf("%d\n", DiamondSpear.durability);*/
 
 // Test de l'affichage de Carte + deplacement du joueur
-
+//*********************************************************************
     //srand(time(NULL));
-     //  int randomSizeMap = randomNumber(7, 15);
-     //  int** map = createMap(10,3);
-    //   printf("%d  -----long",longMap(map));
-      /* printMap(map, randomSizeMap);
-       printf("deplacement joueur");
-       movePlayer(map,randomSizeMap);*/
+       //int randomSizeMap = randomNumber(7, 15);
+       //int** map = createMap(10,3);
+//*********************************************************************
+      // printf("%d  -----long",longMap(map));
+//*********************************************************************
+       //printMap(map, randomSizeMap);
+       //printf("deplacement joueur");
+       //movePlayer(map,randomSizeMap);
     //printMap(map, 10);
     //playGame(map, 10);
+//*********************************************************************
 
 //Test de la fonction qui ajoute une arme a un inventaire
 
-   Player BruceBanner;
+   Player *BruceBanner = malloc(sizeof(Player));
    Inventory *InventoryStart = malloc(sizeof(Inventory));
 
     alimentationDonnees();
-    addArmsToInventory(InventoryStart,WoodSword);
-    addArmsToInventory(InventoryStart,StoneSword);
-    addArmsToInventory(InventoryStart,IronSword);
-    addArmsToInventory(InventoryStart,DiamondSword);
+    addArmsToInventory(BruceBanner,WoodSword);
+    addArmsToInventory(BruceBanner,StoneSword);
+    addArmsToInventory(BruceBanner,IronSword);
+    addArmsToInventory(BruceBanner,DiamondSword);
 
-    for(int i = 0 ; i <= 20 ; i++){
-       printf("%s\n",InventoryStart->arms[i].name);
-       printf("%d\n",InventoryStart->arms[i].damage);
-       printf("%d\n",InventoryStart->arms[i].durability);
+    for(int i = 0 ; i <= 1 ; i++){
+       printf("%s\n",BruceBanner->inventory.arms[i].name);
+       printf("%d\n",BruceBanner->inventory.arms[i].damage);
+       printf("%d\n",BruceBanner->inventory.arms[i].durability);
+       printf("%d\n",BruceBanner->inventory.arms[i].durabilityMax);
     }
- 
+
+   talkPnj(BruceBanner);
+
+   for(int i = 0 ; i <= 1 ; i++){
+       printf("%s\n",BruceBanner->inventory.arms[i].name);
+       printf("%d\n",BruceBanner->inventory.arms[i].damage);
+       printf("%d\n",BruceBanner->inventory.arms[i].durability);
+       printf("%d\n",BruceBanner->inventory.arms[i].durabilityMax);
+    }
+
     
+   // SOUCIS DANS LES METHODES D'AJOUT DANS L'INVENTAIRE (SAUF POUR LES ARMES)
+   
+
+
+
 }

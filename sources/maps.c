@@ -182,7 +182,7 @@ int** actionPlayer(int** map,int longueur,char move){
                 switch (move)
                 {
                     case 'z':
-                        printf("cas Z up --------");
+                        //printf("cas Z up --------");
                         if(i-1 >=0 && map[i-1][j] != -1){
                             map[i][j]= 0;
                             map[i-1][j]= 1;
